@@ -8,11 +8,16 @@ import {
   createNewContact,
   fetchContacts,
 } from "../../components/ContactsList/ContactsThunks";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
   const tasksIsLoading = useSelector(
     (state: RootState) => state.contacts.isLoading
+  );
+  const photoPreview = useSelector(
+    (state: RootState) => state.contacts.newContact.photo
   );
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +30,7 @@ const ContactForm = () => {
     try {
       await dispatch(createNewContact());
       await dispatch(fetchContacts());
+      navigate("/");
     } catch (error) {
       console.log("Error!", error);
     }
@@ -70,6 +76,14 @@ const ContactForm = () => {
           onChange={onChange}
         />
       </Form.Group>
+      <div>
+        <p>Photo preview:</p>
+        <img
+          src={photoPreview}
+          alt=""
+          style={{ width: "250px", height: "250px" }}
+        />
+      </div>
       <Button type="submit" variant="primary" className="mt-3">
         {tasksIsLoading ? <ButtonSpinner /> : "Add contact"}
       </Button>
