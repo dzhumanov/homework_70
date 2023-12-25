@@ -8,8 +8,10 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="add-new" element ={<ContactForm/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="add-new" element={<ContactForm />} />
+        <Route path="edit/:id" element={<ContactForm />} />
+        <Route path="*" element={<h1>Not found</h1>} />
       </Routes>
     </>
   );

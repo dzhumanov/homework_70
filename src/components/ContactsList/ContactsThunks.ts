@@ -8,7 +8,11 @@ export const fetchContacts = createAsyncThunk("contacts/fetch", async () => {
   return response.data;
 });
 
-export const createNewContact = createAsyncThunk<void, undefined, {state: RootState}>('contacts/new', async (_, thunkAPI) => {
+export const createNewContact = createAsyncThunk<
+  void,
+  undefined,
+  { state: RootState }
+>("contacts/new", async (_, thunkAPI) => {
   const contact = thunkAPI.getState().contacts.newContact;
-  await axiosApi.post('contacts.json', contact);
-})
+  await axiosApi.post("contacts.json", contact);
+});

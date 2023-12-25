@@ -25,14 +25,22 @@ const ModalContact = () => {
         <Modal.Title>{selectedContact?.name}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <img src={selectedContact?.photo} alt="" style={{display:'block' ,maxWidth: '300px', height:'auto', margin: '0 auto'}}/>
+        <img
+          src={selectedContact?.photo}
+          alt=""
+          style={{
+            display: "block",
+            maxWidth: "300px",
+            height: "auto",
+            margin: "0 auto",
+          }}
+        />
         <p>Email: {selectedContact?.email}</p>
         <p>Phone: {selectedContact?.phone}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={onClose}>
-          Close
-        </Button>
+        <Button variant="primary">Edit</Button>
+        <Button variant="danger">Close</Button>
       </Modal.Footer>
     </Modal>
   );

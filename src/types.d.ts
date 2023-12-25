@@ -1,10 +1,11 @@
 export interface Contact {
-    name: string;
-    phone: number;
-    email: string;
-    photo: string;
+  id: string;
+  name: string;
+  phone: number;
+  email: string;
+  photo: string;
 }
 
-export interface ContactsList{
-    [contactId:string]: Contact;
+export interface ContactsList {
+  [contactId: string]: Contact;
 }

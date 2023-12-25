@@ -2,7 +2,10 @@ import { Button, Form } from "react-bootstrap";
 import ButtonSpinner from "../../components/Preloader/ButtonSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
-import { newContact } from "../../components/ContactsList/ContactsSlice";
+import {
+  clearNewContact,
+  newContact,
+} from "../../components/ContactsList/ContactsSlice";
 import React from "react";
 import {
   createNewContact,
@@ -13,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 const ContactForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+
   const tasksIsLoading = useSelector(
     (state: RootState) => state.contacts.isLoading
   );
@@ -30,6 +34,7 @@ const ContactForm = () => {
     try {
       await dispatch(createNewContact());
       await dispatch(fetchContacts());
+      dispatch(clearNewContact());
       navigate("/");
     } catch (error) {
       console.log("Error!", error);
@@ -79,7 +84,11 @@ const ContactForm = () => {
       <div>
         <p>Photo preview:</p>
         <img
-          src={photoPreview}
+          src={
+            photoPreview
+              ? photoPreview
+              : "https://artscimedia.case.edu/wp-content/uploads/sites/79/2016/12/14205134/no-user-image.gif"
+          }
           alt=""
           style={{ width: "250px", height: "250px" }}
         />
