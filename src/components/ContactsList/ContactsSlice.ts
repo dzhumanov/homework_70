@@ -1,23 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ContactsList } from "../../types";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { Contact, ContactsList } from "../../types";
 import { fetchContacts } from "./ContactsThunks";
 
 interface contactsState {
   contacts: ContactsList | null;
   isLoading: boolean;
   isError: boolean;
+  newContact: Partial<Contact>;
 }
 
 const initialState: contactsState = {
   contacts: null,
   isLoading: false,
   isError: false,
+  newContact: {},
 };
 
 export const contactsSlice = createSlice({
   name: "contacts",
   initialState,
-  reducers: {},
+  reducers: {
+    newContact: (state, action: PayloadAction<Partial<Contact>>) => {
+      state.newContact = {...state.newContact, ...action.payload};
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchContacts.pending, (state) => {
       state.isLoading = true;
@@ -35,4 +41,4 @@ export const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-// export const {} = contactsSlice.actions;
+export const {newContact} = contactsSlice.actions;

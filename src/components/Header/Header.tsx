@@ -8,7 +8,7 @@ const Header = () => {
           <NavLink to={"/"} className="navbar-brand">
             Contacts
           </NavLink>
-          <NavLink to={"/new-contact"} className="nav-item nav-link text-white">
+          <NavLink to={"/add-new"} className="nav-item nav-link text-white">
             New Contact
           </NavLink>
         </div>
