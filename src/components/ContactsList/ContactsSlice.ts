@@ -7,6 +7,7 @@ interface contactsState {
   isLoading: boolean;
   isError: boolean;
   newContact: Partial<Contact>;
+  modalContact: Contact | null;
 }
 
 const initialState: contactsState = {
@@ -14,6 +15,7 @@ const initialState: contactsState = {
   isLoading: false,
   isError: false,
   newContact: {},
+  modalContact: null,
 };
 
 export const contactsSlice = createSlice({
@@ -22,6 +24,9 @@ export const contactsSlice = createSlice({
   reducers: {
     newContact: (state, action: PayloadAction<Partial<Contact>>) => {
       state.newContact = {...state.newContact, ...action.payload};
+    },
+    selectContact: (state, action: PayloadAction<Contact | null>) => {
+      state.modalContact = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -41,4 +46,4 @@ export const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const {newContact} = contactsSlice.actions;
+export const {newContact, selectContact} = contactsSlice.actions;

@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchContacts } from "./ContactsThunks";
 import OneContact from "./OneContact";
+import ModalContact from "../ModalContact/ModalContact";
 
 const ContactsList = () => {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
@@ -27,6 +28,8 @@ const ContactsList = () => {
       ) : (
         <h1 className="text-center">No contacts</h1>
       )}
+
+      <ModalContact/>
     </div>
   );
 };
